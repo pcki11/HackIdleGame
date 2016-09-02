@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Hack this Idle Game</title>
+<link href="css/style.css" media="all" rel="stylesheet">
+<script type="text/javascript" src="js/html.js"></script>
+<script type="text/javascript" src="js/idle.js"></script>
+<script type="text/javascript" src="js/storage.js"></script>
+<script type="text/javascript" src="js/cheater.js"></script>
+<script>
+	var init = function() {
+		var cheater = new Cheater($("button", ".cheatContainer"), $("textarea", ".cheatContainer"));
+		cheater.load();
+		var game = new IdleGame({
+			logLevel: 8,
+			selectors: {
+				time: "#time",
+				money: "#money",
+				profit: "#profit",
+				tiers: "#tiers"
+			}
+		}, $, _);
+		game.start();
+	};
+</script>
+</head>
+<body onload="init()">
+	<div class="gameContainer">
+		<div class="headerContainer">
+			<div id="title" class="badassText title">iиdustяial esпi0nage v.0.1a [codename: Procrastination]</div>
+			<div id="description" class="badassText description">Pay company workers to get access to a constant flow of information, which is instantly converted to cash. Reach profit heights that have never been known before!</div>
+			<div class="button achievements">
+				Achievements
+			</div>
+			<div>
+				<span id="time"></span>
+				<span>&nbsp;|&nbsp;</span>
+				<span id="money"></span>
+				<span>&nbsp;|&nbsp;</span>
+				<span id="profit" class="greenText"></span>
+			</div>
+		</div>
+		<div id="tiers" class="tiersContainer"></div>
+	</div>
+	<div class="cheatContainer">
+		<textarea id="code" class="cheatTextarea"></textarea>
+		<button onclick="execute()">Hack</button>
+	</div>
+</body>
+</html>
