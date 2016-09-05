@@ -25,6 +25,16 @@
 .button {
 	border:1px solid black;border-radius:6px;padding-left:10px;padding-right:10px;
 }
+.button:focus {
+	outline:none;
+}
+.button:active {
+	background-color: white;
+}
+.button:disabled {
+	background-color: darkgray;
+	color:gray;
+}
 .achievements {
 	float:left;margin-right:20px;
 }
@@ -38,4 +48,7 @@
 .cheatTextarea {
 	width:100%;
 	height:90%;
+}
+.achievementsContainer {
+	height:0px;
 }

@@ -225,6 +225,7 @@ var IdleGame = function(gameSettings, $, _) {
 			dom.appendChild(text);
 
 			var buyButton = _("button", function(el){
+				el.className = "button";
 				el.innerHTML = "Buy";
 				el.onclick = function() {
 					var price = sett.getPrice();
@@ -246,6 +247,7 @@ var IdleGame = function(gameSettings, $, _) {
 				var upgradeButton = _("button", function(el){
 					var upgrade = upgrades[i];
 					upgrade.index = i;
+					el.className = "button";
 					el.innerHTML = upgrade.name + " [" + formatter.format(upgrade.price) + "]";
 					el.onclick = function(){
 						var price = upgrade.price;
