@@ -77,6 +77,46 @@ var Element = function(selector, defaultRoot) {
 			return findWithStringSelector();	
 		})
 	};
+	this.animate = function(settings) {
+		var el = me.find();
+		if(settings.before) {
+			settings.before(el);
+		}
+		var step = 5;
+		var elProp = parseInt(el.style[settings.property]);
+		if(isNaN(elProp) || !elProp) elProp = 0;
+		var isIncrement = elProp < settings.value;
+		var diff = Math.abs(elProp - settings.value);
+		var duration = settings.duration || 300;
+		var stepCount = duration / step;
+		var stepValue = diff / stepCount;
+		var animateFunc = function() {
+			var shouldStop = false;
+			if(isIncrement) {
+				elProp += stepValue;
+				if(elProp > settings.value) {
+					elProp = settings.value;
+					shouldStop = true;
+				}
+			} else {
+				elProp -= stepValue;
+				if(elProp < settings.value) {
+					elProp = settings.value;
+					shouldStop = true;
+				}
+			}
+			console.log("animate "+settings.property+": "+elProp);
+			el.style[settings.property] = elProp;
+			if(stepCount-- > 0 && !shouldStop) {
+				setTimeout(animateFunc, step);
+			} else {
+				if(settings.after) {
+					settings.after(el);
+				}
+			}
+		};
+		animateFunc();
+	};
 	if(!selector) {
 		throw new Error(errors.unknownSelector);
 	}
