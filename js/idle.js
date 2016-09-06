@@ -207,8 +207,8 @@ var IdleGame = function(gameSettings, $, _) {
 		var isVisible = false;
 		this.shouldAppearForMoney = function(money){
 			if(!isVisible) {
-				log(money+" >= "+sett.getPrice());
-				isVisible = money >= sett.getPrice();
+				log(4, money+" >= "+sett.getPrice()/2);
+				isVisible = money >= sett.getPrice()/2;
 				return isVisible;
 			}
 			return false;
