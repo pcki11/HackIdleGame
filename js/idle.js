@@ -22,7 +22,7 @@ var IdleGame = function(gameSettings, $, _) {
 			var result = {};
 			start.price = result.price = Math.floor((start.price * 20) + (start.price !=1?start.price * 0.15:0));
 			start.priceInc = result.priceInc = 1.15;
-			start.profit = result.profit = Math.floor((start.price + Math.sqrt(start.profit)) / 10);
+			start.profit = result.profit = Math.floor((start.price - Math.sqrt(start.profit)) / 10);
 			log(1, start);
 			this.calculatedTiersStart = start;
 			return result;
@@ -207,8 +207,8 @@ var IdleGame = function(gameSettings, $, _) {
 		var isVisible = false;
 		this.shouldAppearForMoney = function(money){
 			if(!isVisible) {
-				log(money+" >= "+sett.getPrice());
-				isVisible = money >= sett.getPrice();
+				log(4, money+" >= "+sett.getPrice()/2);
+				isVisible = money >= sett.getPrice()/2;
 				return isVisible;
 			}
 			return false;
@@ -225,6 +225,7 @@ var IdleGame = function(gameSettings, $, _) {
 			dom.appendChild(text);
 
 			var buyButton = _("button", function(el){
+				el.className = "button";
 				el.innerHTML = "Buy";
 				el.onclick = function() {
 					var price = sett.getPrice();
@@ -246,6 +247,7 @@ var IdleGame = function(gameSettings, $, _) {
 				var upgradeButton = _("button", function(el){
 					var upgrade = upgrades[i];
 					upgrade.index = i;
+					el.className = "button";
 					el.innerHTML = upgrade.name + " [" + formatter.format(upgrade.price) + "]";
 					el.onclick = function(){
 						var price = upgrade.price;
