@@ -22,7 +22,7 @@ var IdleGame = function(gameSettings, $, _) {
 			var result = {};
 			start.price = result.price = Math.floor((start.price * 20) + (start.price !=1?start.price * 0.15:0));
 			start.priceInc = result.priceInc = 1.15;
-			start.profit = result.profit = Math.floor((start.price + Math.sqrt(start.profit)) / 10);
+			start.profit = result.profit = Math.floor((start.price - Math.sqrt(start.profit)) / 10);
 			log(1, start);
 			this.calculatedTiersStart = start;
 			return result;
